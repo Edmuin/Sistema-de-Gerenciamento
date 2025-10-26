@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gerenciamento de TCC para Escolas Técnicas</title>
+<script>
+  (function() {
+    const isDark = localStorage.getItem('darkMode') === 'true';
+    if (isDark) {
+      document.documentElement.style.background = '#121212';
+      document.documentElement.style.color = '#e4e4e4';
+      document.documentElement.classList.add('dark-mode');
+    }
+  })();
+</script>
+
+
+
+    <!-- CSS Externo -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+	
+    <!-- Cabeçalho -->
+    <header>
+
+	<button id="toggle-dark">🌙 Dark Mode</button>
+    	<button id="logout-btn">🚪 Sair</button>
+
+        <h1>Sistema de Gerenciamento de TCC</h1>
+        <p>Facilite a sua vida, a do seu <strong>Tutor</strong> e <strong>Coordenador</strong>, e facilite a sua 			<strong>Escola!</strong></p>
+        <p>Bem-vindo ao sistema! Escolha sua área de acesso abaixo:</p>
+
+    </header>
+
+    <!-- Abas -->
+    <div class="tabs">
+    <button class="tab-btn active" data-tab="inicio">Início</button>
+    <button class="tab-btn" data-tab="aluno">Aluno</button>
+    <button class="tab-btn" data-tab="orientador">Orientador</button>
+    <button class="tab-btn" data-tab="coordenador">Coordenador</button>
+    <button class="tab-btn" data-tab="sobre">Sobre</button>
+</div>
+
+    <!-- Conteúdo das Abas -->
+    <main>
+        <!-- Início -->
+        <div class="tab-content active" id="inicio">
+            <h2>Bem-vindo ao Sistema de Gerenciamento de TCC</h2>
+            <p>Este sistema foi desenvolvido para facilitar o processo de gerenciamento de Trabalhos de Conclusão de Curso (TCC) em escolas técnicas. Aqui, alunos, orientadores e coordenadores podem interagir de forma eficiente.</p>
+            <ul>
+                <li><strong>Alunos:</strong> Cadastrem seus TCCs, enviem arquivos e acompanhem o status do seu trabalho.</li>
+                <li><strong>Orientadores:</strong> Avaliem os TCCs dos alunos, forneçam feedback e atribuam notas.</li>
+                <li><strong>Coordenadores:</strong> Gerenciem os TCCs, visualizem relatórios e mantenham tudo organizado.</li>
+            </ul>
+            <p>Navegue pelas abas acima para acessar sua área específica.</p>
+        </div>
+
+        <!-- Área do Aluno -->
+        <div class="tab-content" id="aluno">
+            <h2>Área do Aluno</h2>
+            <form>
+                <fieldset>
+                    <legend>Cadastro do TCC</legend>
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" required>
+                    
+                    <label for="titulo">Título do TCC:</label>
+                    <input type="text" id="titulo" required>
+
+                    <label for="resumo">Resumo:</label>
+                    <textarea id="resumo" rows="5"></textarea>
+
+                    <button type="submit">Enviar</button>
+                </fieldset>
+            </form>
+        </div>
+
+        <!-- Área do Orientador -->
+        <div class="tab-content" id="orientador">
+            <h2>Área do Orientador</h2>
+            <form>
+                <fieldset>
+                    <legend>Avaliar TCC</legend>
+                    <label for="aluno">Nome do Aluno:</label>
+                    <input type="text" id="aluno">
+
+                    <label for="comentarios">Comentários:</label>
+                    <textarea id="comentarios" rows="5"></textarea>
+
+                    <label for="nota">Nota:</label>
+                    <input type="number" id="nota" min="0" max="20">
+
+                    <button type="submit">Salvar Avaliação</button>
+                </fieldset>
+            </form>
+        </div>
+
+        <!-- Área do Coordenador -->
+        <div class="tab-content" id="coordenador">
+            <h2>Área do Coordenador</h2>
+            <form>
+                <fieldset>
+                    <legend>Gerenciar TCCs</legend>
+                    <label for="pesquisa">Pesquisar TCC:</label>
+                    <input type="text" id="pesquisa">
+
+                    <button type="submit">Buscar</button>
+                </fieldset>
+            </form>
+
+            <section>
+                <h3>Lista de Arquivos Enviados</h3>
+                <ul>
+                    <li>TCC1.pdf - João Silva</li>
+                    <li>TCC2.pdf - Maria Souza</li>
+                    <li>TCC3.pdf - Pedro Lima</li>
+                </ul>
+            </section>
+        </div>
+        <!-- Sobre -->
+        <div class="tab-content" id="sobre">
+            <h2>Sobre o Sistema</h2>
+            <p>Este sistema foi desenvolvido por Helder para facilitar o gerenciamento de Trabalhos de Conclusão de Curso (TCC) em escolas técnicas. A ideia é proporcionar uma plataforma onde alunos, orientadores e coordenadores possam interagir de forma eficiente, tornando o processo mais organizado e transparente.</p>
+            <p>Se você tiver alguma dúvida ou sugestão, não hesite em entrar em contato!</p>
+        </div>
+        
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2025 - Sistema de TCC | Desenvolvido por Helder</p>
+    </footer>
+
+    <script src="script.js"></script>
+        
+</body>
+</html>
