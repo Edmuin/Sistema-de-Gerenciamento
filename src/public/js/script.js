@@ -35,7 +35,7 @@ window.addEventListener('load', () => {
         localStorage.setItem('usuario', usuario);
         localStorage.setItem('tipo', tipo);
         // Mantemos preferência de tema (se existir)
-        window.location.href = 'index.html';
+        window.location.href = '/index.html';
       });
 
       // Não continua execuções do resto se estamos na página de login
@@ -70,7 +70,7 @@ window.addEventListener('load', () => {
       // Se não estivermos logados, força o redirect para login
       if (!usuario || !tipo) {
         console.warn('Usuário não autenticado — redirecionando para login.');
-        window.location.href = 'login.html';
+        window.location.href = '/auth/form-login';
         return;
       }
 
@@ -136,7 +136,7 @@ window.addEventListener('load', () => {
         localStorage.removeItem('tipo');
         // Mantemos dark mode guardado (opcional): se preferires limpar, descomente a linha seguinte
         // localStorage.removeItem('darkMode');
-        window.location.href = 'login.html';
+        window.location.href = '/auth/form-login';
       });
     }
   } catch (err) {
