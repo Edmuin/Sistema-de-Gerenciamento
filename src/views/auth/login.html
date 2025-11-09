@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Sistema de Gerenciamento de TCC</title>
+
+<script>
+  // Aplica dark mode o mais cedo possível (antes do CSS renderizar)
+  (function() {
+    try {
+      const isDark = localStorage.getItem('darkMode') === 'true';
+      if (isDark) {
+        // evita flash claro
+        document.documentElement.style.background = '#121212';
+        document.documentElement.style.color = '#e4e4e4';
+        document.documentElement.classList.add('dark-mode');
+      }
+    } catch (e) {
+      console.warn('Erro ao aplicar dark mode inicial:', e);
+    }
+  })();
+</script>
+
+
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/login.css">
+
+  <style>
+  </style>
+</head>
+
+<body>
+  <div class="login-container">
+    <h2>Login - Sistema TCC</h2>
+    <form id="loginForm">
+      <label for="usuario">Usuário:</label>
+      <input type="text" id="usuario" placeholder="Digite seu nome" required>
+
+      <label for="senha">Senha:</label>
+      <input type="password" id="senha" placeholder="Digite sua senha" required>
+
+      <label for="tipo">Tipo de Usuário:</label>
+      <select id="roles" required>
+        <option disabled selected value="">Selecione...</option>
+      </select>
+
+      <button type="submit">Entrar</button>
+    </form>
+
+    <div class="creditos">&copy; 2025 - Desenvolvido por Helder</div>
+  </div>
+
+  <script src="/js/auth/login.js"></script>
+</body>
+</html>
