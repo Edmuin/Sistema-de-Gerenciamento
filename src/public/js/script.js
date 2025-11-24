@@ -24,18 +24,18 @@ window.addEventListener('load', () => {
         ev.preventDefault();
         const usuario = (document.getElementById('usuario') || {}).value?.trim();
         const senha = (document.getElementById('senha') || {}).value?.trim();
-        const tipo = (document.getElementById('tipo') || {}).value;
+        const role = (document.getElementById('roles') || {}).value;
 
-        if (!usuario || !senha || !tipo) {
+        if (!usuario || !senha || !role) {
           alert('Preencha todos os campos do login.');
           return;
         }
 
         // Aqui estamos a simular autenticação
         localStorage.setItem('usuario', usuario);
-        localStorage.setItem('tipo', tipo);
+        localStorage.setItem('role', role);
         // Mantemos preferência de tema (se existir)
-        window.location.href = '/index.html';
+        window.location.href = '/';
       });
 
       // Não continua execuções do resto se estamos na página de login
@@ -65,22 +65,22 @@ window.addEventListener('load', () => {
 
     if (onIndex) {
       const usuario = localStorage.getItem('usuario');
-      const tipo = localStorage.getItem('tipo');
+      const role = localStorage.getItem('role');
 
       // Se não estivermos logados, força o redirect para login
-      if (!usuario || !tipo) {
+      if (!usuario || !role) {
         console.warn('Usuário não autenticado — redirecionando para login.');
         window.location.href = '/auth/form-login';
         return;
       }
 
-      // Permissões por tipo
+      // Permissões por role
       const permissoes = {
         aluno: ['inicio', 'aluno', 'sobre'],
         orientador: ['inicio', 'orientador', 'sobre'],
         coordenador: ['inicio', 'coordenador', 'sobre']
       };
-      const permitido = permissoes[tipo] || ['inicio', 'sobre'];
+      const permitido = permissoes[role] || ['inicio', 'sobre'];
 
       // Esconder botões/contents não permitidos (usa style.display para preservar o layout)
       tabBtns.forEach(btn => {
@@ -107,7 +107,7 @@ window.addEventListener('load', () => {
         });
       });
 
-      // Define aba inicial: prioriza aba do tipo (ex: 'aluno'), senão a primeira visível
+      // Define aba inicial: prioriza aba do papel (ex: 'aluno'), senão a primeira visível
       let abaInicial = permitido.find(x => x !== 'inicio') || 'inicio';
       let botaoInicial = document.querySelector(`.tab-btn[data-tab="${abaInicial}"]`);
       let conteudoInicial = document.getElementById(abaInicial);
@@ -125,7 +125,7 @@ window.addEventListener('load', () => {
       // Opcional: mostrar saudação no header (se houver container)
       const sauda = document.getElementById('saudacao-usuario');
       if (sauda) {
-        sauda.textContent = `Bem-vindo, ${usuario} (${tipo})`;
+        sauda.textContent = `Bem-vindo, ${usuario} (${role})`;
       }
     }
 
@@ -133,7 +133,7 @@ window.addEventListener('load', () => {
     if (logoutBtn) {
       logoutBtn.addEventListener('click', () => {
         localStorage.removeItem('usuario');
-        localStorage.removeItem('tipo');
+        localStorage.removeItem('role');
         // Mantemos dark mode guardado (opcional): se preferires limpar, descomente a linha seguinte
         // localStorage.removeItem('darkMode');
         window.location.href = '/auth/form-login';
