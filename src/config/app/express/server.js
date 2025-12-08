@@ -9,6 +9,8 @@ import authRoutes from "./routes/auth-routes.js";
 import systemRoutes from "./routes/system-routes.js";
 import userRoutes from "./routes/user-routes.js";
 
+import { criarTodasTabelas } from "../../database/index.js";
+
 dotenv.config();
 
 // const __filename = fileURLToPath(import.meta.url);
@@ -41,6 +43,8 @@ const port = process.env.PORT || 3000;
 
 export const startServer = 
   () => 
-    app.listen(port, () => {
+    app.listen(port, async () => {
+      console.log(`Criando tabelas na base de dados, se não existirem...`);
+      await criarTodasTabelas();
       console.log(`Server On Fire on port: http://localhost:${port}`);
     });
