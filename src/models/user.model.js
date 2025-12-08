@@ -2,8 +2,16 @@ import Repository from "../config/database/repository.js";
 
 export const tabela = {
   nome: "user",
-  colunas: "(nome, email, password, telefone, idade, genero, foto, role_id)",
-  querys: "(?, ?, ?, ?, ?, ?, ?, ?)",
+  colunas: {
+    nome: "nome",
+    email: "email",
+    password: "password",
+    telefone: "telefone",
+    idade: "idade",
+    genero: "genero",
+    foto: "foto",
+    role_id: "role_id"
+  },
 };
 
 const userRepo = Repository(tabela);
