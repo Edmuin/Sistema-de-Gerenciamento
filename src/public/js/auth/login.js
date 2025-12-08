@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   roles.forEach(role => {
     const newOption = document.createElement("option");
-    newOption.setAttribute("value", `${role.id}`);
+    newOption.setAttribute("value", `${role.nome}`);
     newOption.innerHTML = `${role.nome}`;
     roleList.append(newOption);
   })
@@ -17,12 +17,12 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
     const usuario = document.getElementById('usuario').value.trim();
-    const tipo = document.getElementById('roles').value;
+    const role = document.getElementById('roles').value;
 
-    if (usuario && tipo) {
+    if (usuario && role) {
         // Guardar login localmente
         localStorage.setItem('usuario', usuario);
-        localStorage.setItem('tipo', tipo);
+        localStorage.setItem('role', role);
 
         // Redirecionar
         window.location.href = '/';

@@ -35,4 +35,12 @@ app.get("/", (req, res) => {
     res.sendFile(path.join(PATHS.views, "index.html"));
 });
 
-export default app;
+
+
+const port = process.env.PORT || 3000;
+
+export const startServer = 
+  () => 
+    app.listen(port, () => {
+      console.log(`Server On Fire on port: http://localhost:${port}`);
+    });
