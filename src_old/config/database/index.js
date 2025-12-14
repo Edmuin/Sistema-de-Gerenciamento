@@ -59,7 +59,7 @@ export const criarTabelaAvaliacao = async () => {
       updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     )
   `;
-  await pool.query(query);
+  await pool.execute(query);
 }
 
 export const criarTabelaBanca = async () => {
@@ -72,7 +72,7 @@ export const criarTabelaBanca = async () => {
       updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     )
   `;
-  await pool.query(query);
+  await pool.execute(query);
 }
 
 export const criarTabelaCurso = async () => {
@@ -85,7 +85,7 @@ export const criarTabelaCurso = async () => {
       updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     )
   `;
-  await pool.query(query);
+  await pool.execute(query);
 }
 
 export const criarTabelaDefesa = async () => {
@@ -100,7 +100,7 @@ export const criarTabelaDefesa = async () => {
       updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     )
   `;
-  await pool.query(query);
+  await pool.execute(query);
 }
 
 export const criarTabelaDocumento = async () => {
@@ -115,7 +115,7 @@ export const criarTabelaDocumento = async () => {
       updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     )
   `;
-  await pool.query(query);
+  await pool.execute(query);
 }
 
 export const criarTabelaEstudante = async () => {
@@ -132,7 +132,7 @@ export const criarTabelaEstudante = async () => {
       updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     )
   `;
-  await pool.query(query);
+  await pool.execute(query);
 }
 
 export const criarTabelaProfessor = async () => {
@@ -146,7 +146,7 @@ export const criarTabelaProfessor = async () => {
       updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     )
   `;
-  await pool.query(query);
+  await pool.execute(query);
 }
 
 export const criarTabelaProfessorBanca = async () => {
@@ -159,7 +159,7 @@ export const criarTabelaProfessorBanca = async () => {
       updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     )
   `;
-  await pool.query(query);
+  await pool.execute(query);
 }
 
 export const criarTabelaRole = async () => {
@@ -173,7 +173,7 @@ export const criarTabelaRole = async () => {
       UNIQUE KEY (nome)
     )
   `;
-  await pool.query(query);
+  await pool.execute(query);
 }
 
 export const criarTabelaSubdireccao = async () => {
@@ -186,7 +186,7 @@ export const criarTabelaSubdireccao = async () => {
       updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     )
   `;
-  await pool.query(query);
+  await pool.execute(query);
 }
 
 export const criarTabelaTcc = async () => {
@@ -204,7 +204,7 @@ export const criarTabelaTcc = async () => {
       UNIQUE KEY (tema)
     )
   `;
-  await pool.query(query);
+  await pool.execute(query);
 }
 
 export const criarTabelaUser = async () => {
@@ -223,7 +223,7 @@ export const criarTabelaUser = async () => {
       updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     )
   `;
-  await pool.query(query);
+  await pool.execute(query);
 }
 
 export const dadosDeRoles = async () => {
@@ -233,7 +233,7 @@ export const dadosDeRoles = async () => {
       ('aluno', NULL),
       ('coordenador', NULL)
   `;
-  await pool.query(query);
+  await pool.execute(query);
 }
 
 export const criarTodasTabelas = async () => {
@@ -253,5 +253,4 @@ export const criarTodasTabelas = async () => {
   await criarTabelaAprovacaoDefesa();
   await criarTabelaAprovacaoTcc();
   await criarTabelaSubdireccao();
-  console.log("Todas as tabelas foram criadas ou já existiam.");
 }
