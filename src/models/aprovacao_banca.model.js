@@ -2,8 +2,16 @@ import Repository from "../config/database/repository.js";
 
 export const tabela = {
   nome: "aprovacao_banca",
-  colunas: "(id_banda, id_subdireccao, status, data, observacao)",
-  querys: "(?, ?, ?, ?, ?)",
+  colunas: {
+    id_banca: "id_banca",
+    id_subdireccao: "id_subdireccao",
+    status: "status",
+    data: "data",
+    observacao: "observacao"
+  },
+  // colunas: "(id_banda, id_subdireccao, status, data, observacao)",
+  // querys: "(?, ?, ?, ?, ?)",
+
 };
 
 const apro_bancaRepo = Repository(tabela);

@@ -2,12 +2,15 @@ import express from "express";
 import dotenv from "dotenv";
 
 import path from "path";
-import { fileURLToPath } from "url";
+// import { fileURLToPath } from "url";
 
 import { PATHS } from "../../paths.js";
-import authRoutes from "./routes/auth-routes.js";
-import systemRoutes from "./routes/system-routes.js";
-import userRoutes from "./routes/user-routes.js";
+import authRoutes from "./routes/auth-route.js";
+import genericRoutes from "./routes/generic-route.js";
+import roleRoutes from "./routes/role-route.js";
+import userRoutes from "./routes/user-route.js";
+
+import { criarTodasTabelas } from "../../database/index.js";
 
 dotenv.config();
 
@@ -27,9 +30,10 @@ app.use(express.static(PATHS.public));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use("/", systemRoutes);
+app.use("/", genericRoutes);
+app.use("/role", roleRoutes);
 app.use("/auth", authRoutes);
-app.use("/users", userRoutes);
+app.use("/user", userRoutes);
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(PATHS.views, "index.html"));
@@ -39,8 +43,11 @@ app.get("/", (req, res) => {
 
 const port = process.env.PORT || 3000;
 
-export const startServer = 
-  () => 
-    app.listen(port, () => {
-      console.log(`Server On Fire on port: http://localhost:${port}`);
-    });
+export const startServer = () => app.listen(
+  port, 
+  async () => {
+    console.log(`Criando tabelas na base de dados, se não existirem...`);
+    await criarTodasTabelas();
+    console.log(`Server On Fire on port: http://localhost:${port}`);
+  }
+);

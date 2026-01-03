@@ -1,8 +1,10 @@
+const link_registro = document.getElementById("link_registro");
+
 document.addEventListener("DOMContentLoaded", async () => {
   const roleList = document.getElementById("roles");
 
   // podes criar esta rota JSON
-  const response = await fetch("/roles"); 
+  const response = await fetch("/role"); 
   const roles = await response.json();
 
   roles.forEach(role => {
@@ -29,4 +31,9 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     } else {
         alert("Preencha todos os campos.");
     }
+});
+
+link_registro.addEventListener("click", (ev) => {
+  ev.preventDefault();
+  window.location.href = "/auth/register";
 });
