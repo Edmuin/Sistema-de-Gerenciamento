@@ -1,6 +1,6 @@
 import path from "path";
 
-import { SystemService } from "../services/system-service.js";
+import { RoleService } from "../services/role-service.js";
 import { UserService } from "../services/user-service.js";
 
 export const dashboard = async (req, res) => {
@@ -9,6 +9,6 @@ export const dashboard = async (req, res) => {
 }
 
 export const roles = async (req, res) => {
-    const roles = await SystemService.roles();
+    const roles = await RoleService.roles();
     res.json(roles);
 }

@@ -1,7 +1,7 @@
-const link_registro = document.getElementById("link_registro");
+const link_login = document.getElementById("link_login");
 
 document.addEventListener("DOMContentLoaded", async () => {
-  const roleList = document.getElementById("roles");
+  const roleList = document.getElementById("role");
 
   // podes criar esta rota JSON
   const response = await fetch("/role"); 
@@ -33,7 +33,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     }
 });
 
-link_registro.addEventListener("click", (ev) => {
+link_login.addEventListener("click", (ev) => {
   ev.preventDefault();
-  window.location.href = "/auth/register";
+  window.location.href = "/auth/form-login";
 });

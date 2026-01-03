@@ -1,7 +1,7 @@
 import { UserModel } from "../models/user.model.js";
 import { RoleModel } from "../models/role.model.js";
 
-export const SystemService = {
+export const RoleService = {
   async dashboard () {
     const dados = await UserModel.findAll();
     return dados;
