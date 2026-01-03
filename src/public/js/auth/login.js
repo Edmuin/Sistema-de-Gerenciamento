@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   roles.forEach(role => {
     const newOption = document.createElement("option");
-    newOption.setAttribute("value", `${role.id}`);
+    newOption.setAttribute("value", `${role.nome}`);
     newOption.innerHTML = `${role.nome}`;
     roleList.append(newOption);
   })
