@@ -9,6 +9,9 @@ export const tabela = {
     data: "data",
     observacao: "observacao"
   },
+  // colunas: "(id_banda, id_subdireccao, status, data, observacao)",
+  // querys: "(?, ?, ?, ?, ?)",
+
 };
 
 const apro_bancaRepo = Repository(tabela);

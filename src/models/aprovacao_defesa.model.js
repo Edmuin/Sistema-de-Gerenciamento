@@ -9,6 +9,8 @@ export const tabela = {
     data: "data",
     observacao: "observacao"
   },
+  // colunas: "(id_defesa, id_subdireccao, status, data, observacao)",
+  // querys: "(?, ?, ?, ?, ?)",
 };
 
 const apro_defesaRepo = Repository(tabela);
