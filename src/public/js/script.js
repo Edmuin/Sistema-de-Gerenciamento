@@ -1,12 +1,13 @@
 // script.js — versão robusta (substitui tudo)
 document.addEventListener('DOMContentLoaded', () => {// Remove a classe no-transition depois de carregar
-document.body.classList.add('no-transition');
-window.addEventListener('load', () => {
-  document.body.classList.remove('no-transition');
-  document.body.classList.add('ready');
-});
+  document.body.classList.add('no-transition');
+  window.addEventListener('load', () => {
+    document.body.classList.remove('no-transition');
+    document.body.classList.add('ready');
+  });
 
   try {
+    const tipo = 'aluno';
     // --- Helpers ---
     const $ = (sel) => document.querySelector(sel);
     const $$ = (sel) => Array.from(document.querySelectorAll(sel));
@@ -22,20 +23,20 @@ window.addEventListener('load', () => {
     if (loginForm) {
       loginForm.addEventListener('submit', (ev) => {
         ev.preventDefault();
-        const usuario = (document.getElementById('usuario') || {}).value?.trim();
-        const senha = (document.getElementById('senha') || {}).value?.trim();
-        const tipo = (document.getElementById('tipo') || {}).value;
+        const email = (document.getElementById('email') || {}).value?.trim();
+        const password = (document.getElementById('password') || {}).value?.trim();
+        
 
-        if (!usuario || !senha || !tipo) {
+        if (!email || !password) {
           alert('Preencha todos os campos do login.');
           return;
         }
 
         // Aqui estamos a simular autenticação
-        localStorage.setItem('usuario', usuario);
-        localStorage.setItem('tipo', tipo);
+        localStorage.setItem('email', email);
+        localStorage.setItem('password', password);
         // Mantemos preferência de tema (se existir)
-        window.location.href = '/index.html';
+        window.location.href = '/';
       });
 
       // Não continua execuções do resto se estamos na página de login
@@ -64,11 +65,11 @@ window.addEventListener('load', () => {
     const onIndex = document.body && tabBtns.length > 0 && tabContents.length > 0;
 
     if (onIndex) {
-      const usuario = localStorage.getItem('usuario');
-      const tipo = localStorage.getItem('tipo');
+      const email = localStorage.getItem('email');
+      const password = localStorage.getItem('password');
 
       // Se não estivermos logados, força o redirect para login
-      if (!usuario || !tipo) {
+      if (!email || !password) {
         console.warn('Usuário não autenticado — redirecionando para login.');
         window.location.href = '/auth/form-login';
         return;
@@ -125,15 +126,15 @@ window.addEventListener('load', () => {
       // Opcional: mostrar saudação no header (se houver container)
       const sauda = document.getElementById('saudacao-usuario');
       if (sauda) {
-        sauda.textContent = `Bem-vindo, ${usuario} (${tipo})`;
+        sauda.textContent = `Bem-vindo, ${email} (${tipo})`;
       }
     }
 
     // ===== LOGOUT =====
     if (logoutBtn) {
       logoutBtn.addEventListener('click', () => {
-        localStorage.removeItem('usuario');
-        localStorage.removeItem('tipo');
+        localStorage.removeItem('email');
+        localStorage.removeItem('password');
         // Mantemos dark mode guardado (opcional): se preferires limpar, descomente a linha seguinte
         // localStorage.removeItem('darkMode');
         window.location.href = '/auth/form-login';

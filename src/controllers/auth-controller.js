@@ -5,7 +5,7 @@ import { UserService } from "../services/user-service.js";
 
 export const formLogin = async (req, res) => {
     // const users = await UserService.listar();
-    res.sendFile(path.join(process.cwd(), "src/views/login.html"));
+    res.sendFile(path.join(process.cwd(), "src/views/auth/login.html"));
 };
 
 export const login = async (req, res) => {
@@ -18,11 +18,9 @@ export const login = async (req, res) => {
 };
 
 export const register = async (req, res) => {
-    try {
+    
         res.sendFile(path.join(process.cwd(), "src/views/auth/register.html"));
-    } catch (err) {
-        res.status(404).send(err.message);
-    }
+    
 };
 
 export const logout = async (req, res) => {

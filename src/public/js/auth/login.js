@@ -5,28 +5,30 @@ document.addEventListener("DOMContentLoaded", async () => {
   const response = await fetch("/roles"); 
   const roles = await response.json();
 
-  roles.forEach(role => {
+  /*roles.forEach(role => {
     const newOption = document.createElement("option");
     newOption.setAttribute("value", `${role.nome}`);
     newOption.innerHTML = `${role.nome}`;
     roleList.append(newOption);
-  })
+  })*/
 });
 
 document.getElementById('loginForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
-    const usuario = document.getElementById('usuario').value.trim();
-    const tipo = document.getElementById('roles').value;
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
 
-    if (usuario && tipo) {
-        // Guardar login localmente
-        localStorage.setItem('usuario', usuario);
-        localStorage.setItem('tipo', tipo);
+    if (email && password) {
+      localStorage.setItem('email', email);//
+      localStorage.setItem('password', password);//
 
-        // Redirecionar
-        window.location.href = '/';
+      console.log('Usuário autenticado:', email);
+      console.log('Redirecionando para a página principal...');
+
+      // Redirecionar
+      window.location.href = '/';
     } else {
-        alert("Preencha todos os campos.");
+      alert("Preencha todos os campos.");
     }
 });
