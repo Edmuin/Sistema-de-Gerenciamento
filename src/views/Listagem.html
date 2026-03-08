@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listagem Geral - Sistema TCC</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/css/templatemo-glass-admin-style.css">
+</head>
+
+<body>
+    <div class="background"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <div class="dashboard">
+        <aside class="sidebar glass-card">
+            <div class="sidebar-header">
+                <div class="logo">TCC</div>
+                <span class="logo-text">Gerenciador</span>
+            </div>
+
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Início</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">Listagens</a>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <button id="logout-btn" class="card-btn">🚪 Voltar</button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="navbar glass-card" style="margin-bottom: 20px;">
+                <h1 class="page-title">Diretório do Sistema</h1>
+            </header>
+
+            <section class="content-grid" style="display: flex; flex-direction: column; gap: 30px;">
+                
+                <div class="glass-card table-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Alunos Cadastrados</h2>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Projeto/TCC</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><div class="table-user"><div class="table-avatar" style="background: var(--primary-color)">JS</div> João Silva</div></td>
+                                    <td>IA na Educação Técnica</td>
+                                    <td><span class="status-badge completed">Ativo</span></td>
+                                </tr>
+                                <tr>
+                                    <td><div class="table-user"><div class="table-avatar" style="background: var(--coral)">MS</div> Maria Souza</div></td>
+                                    <td>Automação Residencial</td>
+                                    <td><span class="status-badge processing">Pendente</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="glass-card table-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Orientadores</h2>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Orientador</th>
+                                    <th>Área de Especialidade</th>
+                                    <th>Vagas</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Prof. Roberto Lima</td>
+                                    <td>Engenharia de Software</td>
+                                    <td><span class="status-badge" style="background: rgba(255,255,255,0.1)">2/5</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="glass-card table-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Equipe de Coordenação</h2>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Coordenador</th>
+                                    <th>Departamento</th>
+                                    <th>Contacto</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Helder (Admin)</td>
+                                    <td>Geral</td>
+                                    <td>coord@escola.com</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+    </div>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 - Sistema de TCC | Listagem Geral</p>
+    </footer>
+
+</body>
+
+<script src="/js/templatemo-glass-admin-style.js"></script>
+</html>

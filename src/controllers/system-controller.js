@@ -11,3 +11,7 @@ export const roles = async (req, res) => {
     const roles = await SystemService.roles();
     res.json(roles);
 }
+
+export const Listagem = async (req, res) => {
+    res.sendFile(path.join(process.cwd(), "src/views/Listagem.html"));
+}
