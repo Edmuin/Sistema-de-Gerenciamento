@@ -18,12 +18,9 @@ export const login = async (req, res) => {
 };
 
 export const register = async (req, res) => {
-    try {
-        const user = await UserService.buscarPorId(req.params.id);
-        res.render("users/show", { user });
-    } catch (err) {
-        res.status(404).send(err.message);
-    }
+    
+        res.sendFile(path.join(process.cwd(), "src/views/auth/register.html"));
+    
 };
 
 export const logout = async (req, res) => {
