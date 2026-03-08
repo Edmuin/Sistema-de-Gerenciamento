@@ -11,7 +11,7 @@ const {
   DB_PASSWORD,
   DB_NAME,
   DB_PORT
-} = process.env;
+}=process.env;
 
 function buildConnectionUri() {
   const params = new URLSearchParams({
