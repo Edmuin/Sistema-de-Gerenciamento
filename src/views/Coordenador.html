@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Coordenação - TCC</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/css/templatemo-glass-admin-style.css">
+</head>
+
+<body>
+    <div class="background"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <div class="dashboard">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo" style="background: var(--amber);">ADM</div>
+                <span class="logo-text">Gestão Escola</span>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Início</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">Gestão de Alunos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Corpo Docente</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Relatórios Finais</a>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <button onclick="window.location.href='index.html'" class="card-btn">🚪 Sair</button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="navbar glass-card" style="margin-bottom: 20px;">
+                <h1 class="page-title">Administração Geral do Sistema</h1>
+            </header>
+
+            <div class="stats-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 25px;">
+                <div class="glass-card-3d stat-card" style="border-left: 4px solid var(--primary-color);">
+                    <span class="stat-label">Alunos Ativos</span>
+                    <div class="stat-value">124</div>
+                </div>
+                <div class="glass-card-3d stat-card" style="border-left: 4px solid var(--emerald);">
+                    <span class="stat-label">TCCs Concluídos</span>
+                    <div class="stat-value">42</div>
+                </div>
+                <div class="glass-card-3d stat-card" style="border-left: 4px solid var(--gold);">
+                    <span class="stat-label">Orientadores</span>
+                    <div class="stat-value">18</div>
+                </div>
+                <div class="glass-card-3d stat-card" style="border-left: 4px solid var(--coral);">
+                    <span class="stat-label">Prazos Críticos</span>
+                    <div class="stat-value">3</div>
+                </div>
+            </div>
+
+            <div class="content-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                
+                <section class="glass-card table-card">
+                    <h2 class="card-title">Monitorização de Professores</h2>
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Orientador</th>
+                                    <th>Nº Alunos</th>
+                                    <th>Carga</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Prof. Roberto Lima</td>
+                                    <td>5/5</td>
+                                    <td><span class="status-badge completed">Cheio</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Prof.ª Sónia Ramos</td>
+                                    <td>3/5</td>
+                                    <td><span class="status-badge processing">Disponível</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section class="glass-card">
+                    <h2 class="card-title">Cronograma Institucional</h2>
+                    <div class="activity-list" style="margin-top: 15px;">
+                        <div class="activity-item" style="padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <div>
+                                <p><strong>Lançamento de Notas Finais</strong></p>
+                                <small style="color: var(--text-dim);">Data Limite: 15/12/2026</small>
+                            </div>
+                        </div>
+                        <div class="activity-item" style="padding: 10px;">
+                            <div>
+                                <p><strong>Inscrição para Defesas de TCC</strong></p>
+                                <small style="color: var(--text-dim);">Período: 01/11 a 15/11</small>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="card-btn active" style="width: 100%; margin-top: 20px;">Configurar Novo Prazo</button>
+                </section>
+
+            </div>
+
+            <section class="glass-card table-card" style="margin-top: 20px;">
+                <h2 class="card-title">Gestão de Candidaturas de TCC</h2>
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Nome do Aluno</th>
+                                <th>Curso</th>
+                                <th>Orientador Atribuído</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Helder (Exemplo)</td>
+                                <td>Informática</td>
+                                <td>Prof. Roberto</td>
+                                <td><button class="status-badge" style="background: rgba(255,255,255,0.1); color: white; border:none; cursor:pointer;">Editar Vínculo</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 - Gestão Centralizada | Sistema de TCC</p>
+    </footer>
+
+    <script src="/js/templatemo-glass-admin-style.js"></script>
+</body>
+</html>

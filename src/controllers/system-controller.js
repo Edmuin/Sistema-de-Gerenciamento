@@ -15,3 +15,15 @@ export const roles = async (req, res) => {
 export const Listagem = async (req, res) => {
     res.sendFile(path.join(process.cwd(), "src/views/Listagem.html"));
 }
+
+export const Aluno = async (req, res) => {
+    res.sendFile(path.join(process.cwd(), "src/views/Aluno.html"));
+}
+
+export const Orientador = async (req, res) => {
+    res.sendFile(path.join(process.cwd(), "src/views/Orientador.html"));
+}
+
+export const Coordenador = async (req, res) => {
+    res.sendFile(path.join(process.cwd(), "src/views/Coordenador.html"));
+}
