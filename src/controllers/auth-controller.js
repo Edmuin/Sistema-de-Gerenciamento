@@ -24,5 +24,5 @@ export const register = async (req, res) => {
 };
 
 export const logout = async (req, res) => {
-    res.render("users/create");
+    res.redirect('/auth/login.html');
 };

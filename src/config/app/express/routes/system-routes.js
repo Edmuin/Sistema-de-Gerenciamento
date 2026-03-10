@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { dashboard,roles ,Listagem ,Aluno ,Orientador ,Coordenador} from "../../../../controllers/system-controller.js";
+import { dashboard ,roles ,Listagem ,Aluno ,Orientador ,Coordenador} from "../../../../controllers/system-controller.js";
 
 const router = Router();
 
