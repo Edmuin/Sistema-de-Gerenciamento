@@ -17,6 +17,10 @@ export const UserModel = {
     return await userRepo.findById(id);
   },
 
+  async findByEmail(email) {
+    return await userRepo.findByEmail(email);
+  },
+
   async store(data) {
     return await userRepo.store(data);
   },

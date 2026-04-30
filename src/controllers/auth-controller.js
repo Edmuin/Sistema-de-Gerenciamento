@@ -1,28 +1,82 @@
 import path from "path";
-
 import { AuthService } from "../services/auth-service.js";
-import { UserService } from "../services/user-service.js";
+import { validationResult } from "express-validator";
+import { ApiResponse } from "../utils/response.js";
+import { Logger } from "../utils/logger.js";
 
 export const formLogin = async (req, res) => {
-    // const users = await UserService.listar();
+  try {
     res.sendFile(path.join(process.cwd(), "src/views/auth/login.html"));
+  } catch (err) {
+    Logger.error("Erro ao servir form de login", err);
+    return ApiResponse.error(res, err.message);
+  }
 };
 
 export const login = async (req, res) => {
-    try {
-        const user = await UserService.buscarPorId(req.params.id);
-        res.render("users/show", { user });
-    } catch (err) {
-        res.status(404).send(err.message);
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return ApiResponse.badRequest(res, "Validação falhou", 400, errors.array());
     }
+
+    const { email, password } = req.body;
+    const { user, token } = await AuthService.login(email, password);
+
+    Logger.info("Login bem-sucedido", { userId: user.id, email });
+
+    return ApiResponse.success(res, {
+      token,
+      user: {
+        id: user.id,
+        email: user.email,
+        name: user.nome,
+        role_id: user.role_id,
+      },
+    }, "Login realizado com sucesso");
+  } catch (err) {
+    Logger.warn("Falha de login", { email: req.body.email, error: err.message });
+    return ApiResponse.unauthorized(res, err.message);
+  }
 };
 
 export const register = async (req, res) => {
-    
-        res.sendFile(path.join(process.cwd(), "src/views/auth/register.html"));
-    
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return ApiResponse.badRequest(res, "Validação falhou", 400, errors.array());
+    }
+
+    const { name, email, password, password_confirm } = req.body;
+
+    if (password !== password_confirm) {
+      return ApiResponse.badRequest(res, "Passwords não coincidem");
+    }
+
+    const user = await AuthService.register({ name, email, password });
+
+    Logger.info("Novo utilizador registado", { userId: user.id, email });
+
+    return ApiResponse.created(res, {
+      user: {
+        id: user.id,
+        email: user.email,
+        name: user.nome,
+      },
+    }, "Utilizador registado com sucesso");
+  } catch (err) {
+    Logger.warn("Falha no registo", { email: req.body.email, error: err.message });
+    return ApiResponse.error(res, err.message, 400);
+  }
 };
 
 export const logout = async (req, res) => {
-    res.redirect('/auth/login.html');
+  try {
+    const result = await AuthService.logout(req.user?.id);
+    Logger.info("Logout realizado", { userId: req.user?.id });
+    return ApiResponse.success(res, result, "Logout realizado com sucesso");
+  } catch (err) {
+    Logger.error("Erro no logout", err);
+    return ApiResponse.error(res, err.message);
+  }
 };

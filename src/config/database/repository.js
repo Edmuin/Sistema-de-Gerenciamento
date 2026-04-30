@@ -25,11 +25,24 @@ function Repository(table) {
       }
     },
 
+    async findByEmail(email) {
+      try {
+        const [rows] = await pool.query(
+          `SELECT * FROM ${table.nome} WHERE email = ?`,
+          [email]
+        );
+        return rows[0];
+      } catch (error) {
+        console.error("Erro ao buscar por email:", error);
+        throw error;
+      }
+    },
+
     async store(entity) {
       try {
         const [result] = await pool.query(
           `INSERT INTO ${table.nome} ${table.colunas} VALUES ${table.querys}`,
-          [...entity]
+          [...Object.values(entity)]
         );
         return { id: result.insertId, ...entity };
       } catch (error) {
