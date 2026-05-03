@@ -2,6 +2,16 @@ import { UserModel } from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
+const getRoleName = (roleId) => {
+  const roles = {
+    1: "Admin",
+    2: "Coordenador",
+    2.5: "Orientador",
+    3: "Aluno",
+  };
+  return roles[roleId] || "Aluno";
+};
+
 export const AuthService = {
   async register(dados) {
     if (!dados.name || !dados.email || !dados.password) {
@@ -21,10 +31,14 @@ export const AuthService = {
       nome: dados.name,
       email: dados.email,
       password: hashedPassword,
-      role_id: dados.role_id || 3, // Default: Student
+      role_id: dados.role_id || 3, // Default: Aluno
     });
     
-    return novo;
+    return {
+      ...novo,
+      role_id: novo.role_id || dados.role_id || 3,
+      role: getRoleName(novo.role_id || dados.role_id || 3),
+    };
   },
 
   async login(email, password) {
@@ -49,7 +63,20 @@ export const AuthService = {
       { expiresIn: "24h" }
     );
 
-    return { user, token };
+    const role = getRoleName(user.role_id);
+    const userWithRole = {
+      ...user,
+      role_id: user.role_id || 3,
+      role,
+    };
+
+    const tokenWithRole = jwt.sign(
+      { id: user.id, email: user.email, role_id: user.role_id, role },
+      process.env.JWT_SECRET || "seu_segredo_aqui",
+      { expiresIn: "24h" }
+    );
+
+    return { user: userWithRole, token: tokenWithRole };
   },
 
   async logout(id) {

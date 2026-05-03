@@ -6,9 +6,11 @@ import { formLogin, login, logout, register } from "../../../../controllers/auth
 const router = Router();
 
 // GET - Servir páginas de autenticação melhoradas
-router.get("/form-login", (req, res) => {
+router.get("/login", (req, res) => {
   res.sendFile(path.join(process.cwd(), "src/views/auth/login-v2.html"));
 });
+
+router.get("/form-login", formLogin);
 
 router.get("/register", (req, res) => {
   res.sendFile(path.join(process.cwd(), "src/views/auth/register-v2.html"));

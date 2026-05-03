@@ -1,8 +1,22 @@
 import { UserModel } from "../models/user.model.js";
 
+const getRoleName = (roleId) => {
+  const roles = {
+    1: "Admin",
+    2: "Coordenador",
+    2.5: "Orientador",
+    3: "Aluno",
+  };
+  return roles[roleId] || "Aluno";
+};
+
 export const UserService = {
   async listar() {
-    return await UserModel.findAll();
+    const users = await UserModel.findAll();
+    return users.map((user) => ({
+      ...user,
+      role: getRoleName(user.role_id),
+    }));
   },
 
   async gravar(dados) {
@@ -16,7 +30,10 @@ export const UserService = {
   async buscarPorId(id) {
     const user = await UserModel.findById(id);
     if (!user) throw new Error("Usuário não encontrado.");
-    return user;
+    return {
+      ...user,
+      role: getRoleName(user.role_id),
+    };
   },
 
   async EliminarPorId(id) {

@@ -2,38 +2,42 @@ import { Router } from "express";
 import path from "path";
 
 import { dashboard ,roles ,Listagem ,Aluno ,Orientador ,Coordenador} from "../../../../controllers/system-controller.js";
-import { authenticateToken, authorizeRole } from "../../../../middlewares/auth-middleware.js";
+import { authMiddleware, authorizeRole } from "../../../../middlewares/auth-middleware.js";
 
 const router = Router();
 
-// rotas das paginas principais
-router.get("/", dashboard);
+// rota inicial do projeto sempre para o dashboard
+router.get("/", (req, res) => {
+    res.sendFile(path.join(process.cwd(), "src/views/dashboard.html"));
+});
 router.get("/roles", roles);
 router.get("/listagem", Listagem);
 router.get("/aluno", Aluno);
 router.get("/orientador", Orientador);
 router.get("/coordenador", Coordenador);
 
-// Dashboard principal (após autenticação)
-router.get("/dashboard", authenticateToken, (req, res) => {
+// Dashboard principal
+router.get("/dashboard", (req, res) => {
     res.sendFile(path.join(process.cwd(), "src/views/dashboard.html"));
 });
 
 // Dashboard específico por role
-router.get("/aluno/dashboard", authenticateToken, authorizeRole(["Aluno"]), (req, res) => {
+router.get("/aluno/dashboard", (req, res) => {
     res.sendFile(path.join(process.cwd(), "src/views/dashboards/aluno-dashboard.html"));
 });
 
-router.get("/orientador/dashboard", authenticateToken, authorizeRole(["Orientador"]), (req, res) => {
+router.get("/orientador/dashboard", (req, res) => {
     res.sendFile(path.join(process.cwd(), "src/views/dashboards/orientador-dashboard.html"));
 });
 
-router.get("/coordenador/dashboard", authenticateToken, authorizeRole(["Coordenador"]), (req, res) => {
+router.get("/coordenador/dashboard", (req, res) => {
     res.sendFile(path.join(process.cwd(), "src/views/dashboards/coordenador-dashboard.html"));
 });
 
-router.get("/admin/dashboard", authenticateToken, authorizeRole(["Admin"]), (req, res) => {
+router.get("/admin/dashboard", (req, res) => {
     res.sendFile(path.join(process.cwd(), "src/views/dashboards/admin-dashboard.html"));
 });
+
+
 
 export default router;

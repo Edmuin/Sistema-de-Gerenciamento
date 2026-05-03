@@ -156,6 +156,7 @@ class RegisterManager {
                  this.form.querySelector('input[name="name"]')?.value.trim();
     const email = this.form.querySelector('input[name="email"], input[id="email"]')?.value.trim();
     const password = this.form.querySelector('input[name="password"], input[id="password"]')?.value;
+    const roleId = this.form.querySelector('select[name="role_id"]')?.value;
 
     // Desabilitar botão enquanto processa
     const submitBtn = this.form.querySelector('button[type="submit"]');
@@ -173,7 +174,8 @@ class RegisterManager {
           name,
           email,
           password,
-          password_confirm: password
+          password_confirm: password,
+          role_id: roleId
         })
       });
 
@@ -185,7 +187,7 @@ class RegisterManager {
         this.showSuccess('Conta criada com sucesso! Redirecionando para login...');
         
         setTimeout(() => {
-          window.location.href = '/auth/form-login';
+          window.location.href = '/auth/login';
         }, 2000);
       } else {
         const errorMsg = data.message || 'Falha ao criar conta';

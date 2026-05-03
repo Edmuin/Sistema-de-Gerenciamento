@@ -4,7 +4,7 @@ import { SystemService } from "../services/system-service.js";
 import { UserService } from "../services/user-service.js";
 
 export const dashboard = async (req, res) => {
-    res.sendFile(path.join(process.cwd(), "src/views/index_new.html"));
+    res.sendFile(path.join(process.cwd(), "src/views/dashboard.html"));
 }
 
 export const roles = async (req, res) => {
@@ -27,3 +27,5 @@ export const Orientador = async (req, res) => {
 export const Coordenador = async (req, res) => {
     res.sendFile(path.join(process.cwd(), "src/views/Coordenador.html"));
 }
+
+

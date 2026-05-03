@@ -121,18 +121,31 @@ class LoginManager {
 
       const data = await response.json();
 
-      if (response.ok && data.data.token) {
+        if (response.ok && data.data.token) {
         // Guardar token e dados do usuário
+        const roleId = data.data.user?.role_id;
+        const roleNames = {
+          1: 'Admin',
+          2: 'Coordenador',
+          2.5: 'Orientador',
+          3: 'Aluno'
+        };
+        const normalizedRoleId = roleId !== undefined ? String(roleId) : '3';
+        const userRole = data.data.user?.role || roleNames[normalizedRoleId] || 'Usuário';
+        const userWithRole = {
+          ...data.data.user,
+          role_id: normalizedRoleId,
+          role: userRole,
+        };
         localStorage.setItem('token', data.data.token);
-        localStorage.setItem('user', JSON.stringify(data.data.user));
-        
-        console.log('✅ Login bem-sucedido!', data.data.user);
+        localStorage.setItem('user', JSON.stringify(userWithRole));
+        console.log('✅ Login bem-sucedido!', userWithRole);
         
         // Mostrar sucesso e redirecionar
         this.showSuccess('Login realizado com sucesso! Redirecionando...');
         
         // Redirecionar para o dashboard específico do papel
-        const role = data.data.user?.role;
+        const role = userWithRole.role || roleNames[String(userWithRole.role_id)] || 'Usuário';
         const dashboards = {
           'Aluno': '/aluno/dashboard',
           'Orientador': '/orientador/dashboard',

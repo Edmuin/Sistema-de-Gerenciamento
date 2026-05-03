@@ -34,9 +34,7 @@ app.use("/", systemRoutes);
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 
-app.get("/", (req, res) => {
-    res.sendFile(path.join(PATHS.views, "index.html"));
-});
+// Root route is handled by systemRoutes and serves dashboard.html directly.
 
 // 404 handler
 app.use(notFound);

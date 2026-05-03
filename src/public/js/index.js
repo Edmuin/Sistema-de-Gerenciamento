@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {// Remove a classe no-trans
     // Se não estivermos logados, força o redirect para login
     if (!email || !password) {
         console.warn('Usuário não autenticado — redirecionando para login.');
-        window.location.href = '/auth/form-login';
+        window.location.href = '/auth/login';
         return;
     }
 

@@ -20,12 +20,12 @@ class NavegacaoSistema {
    * Verifica se usuário está autenticado
    */
   checkAuth() {
-    const publicPages = ['/auth/form-login', '/auth/register', '/'];
+    const publicPages = ['/auth/login', '/auth/register', '/'];
     const currentPage = window.location.pathname;
     
     // Se não tem token e não está em página pública, redireciona para login
     if (!this.token && !publicPages.includes(currentPage)) {
-      window.location.href = '/auth/form-login';
+      window.location.href = '/auth/login';
     }
   }
 
@@ -81,7 +81,7 @@ class NavegacaoSistema {
     if (confirm('Tem a certeza que deseja sair?')) {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
-      window.location.href = '/auth/form-login';
+      window.location.href = '/auth/login';
     }
   }
 
@@ -90,7 +90,7 @@ class NavegacaoSistema {
    */
   navigateByRole() {
     if (!this.user) {
-      window.location.href = '/auth/form-login';
+      window.location.href = '/auth/login';
       return;
     }
 

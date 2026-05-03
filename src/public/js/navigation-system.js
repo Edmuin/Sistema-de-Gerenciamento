@@ -15,7 +15,7 @@ class NavigacaoSistema {
     init() {
         // Redirecionar usuário não autenticado para login
         if (!this.isAuthenticated() && !this.isAuthPage()) {
-            window.location.href = '/auth/form-login';
+            window.location.href = '/auth/login';
             return;
         }
 
@@ -44,8 +44,9 @@ class NavigacaoSistema {
      */
     isAuthPage() {
         const pathname = window.location.pathname;
-        return pathname.includes('/auth/') || 
-               pathname.includes('/form-login') || 
+         return pathname.includes('/auth/') || 
+               pathname.includes('/auth/login') || 
+               pathname === '/' ||
                pathname.includes('/register');
     }
 
@@ -117,7 +118,7 @@ class NavigacaoSistema {
     logout() {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
-        window.location.href = '/auth/form-login';
+        window.location.href = '/auth/login';
     }
 
     /**
@@ -164,7 +165,7 @@ class NavigacaoSistema {
         if (this.isAuthenticated()) {
             window.location.href = url;
         } else {
-            window.location.href = '/auth/form-login';
+            window.location.href = '/auth/login';
         }
     }
 
