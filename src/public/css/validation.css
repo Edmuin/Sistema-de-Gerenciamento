@@ -1,0 +1,241 @@
+/* Estilos para Validação e Mensagens */
+
+/* Mensagens de Erro e Sucesso */
+.form-error,
+.form-success {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  font-weight: 500;
+  animation: slideDown 0.3s ease-out;
+}
+
+.form-error {
+  background-color: #fed7d7;
+  color: #9b2c2c;
+  border: 1px solid #fc8181;
+}
+
+.form-success {
+  background-color: #c6f6d5;
+  color: #22543d;
+  border: 1px solid #9ae6b4;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Campos com Erro */
+.input-error {
+  border-color: #fc8181 !important;
+  background-color: #fff5f5 !important;
+}
+
+.input-error::placeholder {
+  color: #fb7185 !important;
+}
+
+/* Mensagens de Erro do Campo */
+.error-message {
+  color: #dc2626;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+/* Spinner de Loading */
+.spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s linear infinite;
+  margin-right: 0.5rem;
+  vertical-align: -3px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Validação de Senha Força */
+.password-strength {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.password-strength.weak {
+  background: #fed7d7;
+  color: #9b2c2c;
+}
+
+.password-strength.medium {
+  background: #feebc8;
+  color: #7c2d12;
+}
+
+.password-strength.strong {
+  background: #c6f6d5;
+  color: #22543d;
+}
+
+/* Checklist de Requisitos */
+.requirements-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0;
+  font-size: 0.875rem;
+}
+
+.requirements-list li {
+  padding: 0.25rem 0;
+  color: #666;
+}
+
+.requirements-list li.met {
+  color: #48bb78;
+}
+
+.requirements-list li.met::before {
+  content: "✓ ";
+  font-weight: bold;
+}
+
+.requirements-list li:not(.met)::before {
+  content: "○ ";
+}
+
+/* Toggle Password Visibility */
+.password-toggle {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.password-toggle:hover {
+  opacity: 1;
+}
+
+/* Form Group com Toggle */
+.form-group-password {
+  position: relative;
+}
+
+.form-group-password .form-input {
+  padding-right: 3rem;
+}
+
+/* Validação em Tempo Real */
+.form-input.valid {
+  border-color: #48bb78;
+  background-color: #f0fdf4;
+}
+
+.form-input.invalid {
+  border-color: #fc8181;
+  background-color: #fff5f5;
+}
+
+/* Dica de Validação */
+.form-hint {
+  font-size: 0.875rem;
+  color: #666;
+  margin-top: 0.25rem;
+}
+
+.form-input:focus ~ .form-hint {
+  display: block;
+}
+
+/* Checkmark de Sucesso */
+.success-checkmark {
+  display: inline-block;
+  margin-left: 0.5rem;
+  color: #48bb78;
+  font-weight: bold;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  .form-error {
+    background-color: #742a2a;
+    color: #fecaca;
+    border-color: #991b1b;
+  }
+
+  .form-success {
+    background-color: #064e3b;
+    color: #86efac;
+    border-color: #059669;
+  }
+
+  .input-error {
+    background-color: #7f1d1d !important;
+  }
+
+  .error-message {
+    color: #fca5a5;
+  }
+
+  .form-hint {
+    color: #a0aec0;
+  }
+
+  .requirements-list li {
+    color: #cbd5e0;
+  }
+
+  .requirements-list li.met {
+    color: #86efac;
+  }
+
+  .password-strength.weak {
+    background: #742a2a;
+    color: #fecaca;
+  }
+
+  .password-strength.medium {
+    background: #78350f;
+    color: #fdba74;
+  }
+
+  .password-strength.strong {
+    background: #064e3b;
+    color: #86efac;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .form-error,
+  .form-success {
+    font-size: 0.9rem;
+    padding: 0.75rem;
+  }
+
+  .error-message {
+    font-size: 0.8rem;
+  }
+}

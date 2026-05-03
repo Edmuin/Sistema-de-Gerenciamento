@@ -1,10 +1,20 @@
 import { Router } from "express";
 import { body } from "express-validator";
+import path from "path";
 import { formLogin, login, logout, register } from "../../../../controllers/auth-controller.js";
 
 const router = Router();
 
-router.get("/form-login", formLogin);
+// GET - Servir páginas de autenticação melhoradas
+router.get("/form-login", (req, res) => {
+  res.sendFile(path.join(process.cwd(), "src/views/auth/login-v2.html"));
+});
+
+router.get("/register", (req, res) => {
+  res.sendFile(path.join(process.cwd(), "src/views/auth/register-v2.html"));
+});
+
+// POST - Endpoints de API
 
 router.post("/login", 
   body("email").isEmail().normalizeEmail(),
