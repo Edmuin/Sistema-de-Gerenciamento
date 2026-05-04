@@ -41,16 +41,16 @@ Edite o ficheiro `.env` com suas configurações:
 ```env
 PORT=3000
 DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=sua_senha
+DB_USER=sis_tcc_app
+DB_PASSWORD=SenhaApp123!
 DB_NAME=db_sis_tcc
-DB_PORT=3307
+DB_PORT=3306
 JWT_SECRET=sua_chave_secreta_muito_segura_aqui_2024
 ```
 
 ### 4. Crie o banco de dados
 ```bash
-mysql -u root -p < database.sql
+mysql -u root -p < database-init.sql
 ```
 
 ### 5. Inicie o servidor de desenvolvimento

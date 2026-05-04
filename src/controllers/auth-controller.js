@@ -84,3 +84,23 @@ export const logout = async (req, res) => {
     return ApiResponse.error(res, err.message);
   }
 };
+
+export const me = async (req, res) => {
+  try {
+    if (!req.user) {
+      return ApiResponse.unauthorized(res, "Usuário não autenticado");
+    }
+
+    return ApiResponse.success(res, {
+      user: {
+        id: req.user.id,
+        email: req.user.email,
+        role_id: req.user.role_id,
+        role: req.user.role,
+      },
+    }, "Usuário autenticado");
+  } catch (err) {
+    Logger.error("Erro ao buscar usuário autenticado", err);
+    return ApiResponse.error(res, err.message);
+  }
+};

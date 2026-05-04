@@ -174,7 +174,7 @@ class RegisterManager {
           name,
           email,
           password,
-          password_confirm: password,
+          password_confirm: this.form.querySelector('input[name="password_confirm"], input[id="password_confirm"]')?.value || password,
           role_id: roleId
         })
       });

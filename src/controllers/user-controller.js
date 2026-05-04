@@ -26,7 +26,7 @@ export const show = async (req, res) => {
 
 export const createForm = async (req, res) => {
   try {
-    res.render("users/create");
+    res.sendFile(path.join(process.cwd(), "src/views/users/create.html"));
   } catch (err) {
     Logger.error("Erro ao servir formulário de criação", err);
     return ApiResponse.error(res, err.message);
@@ -61,5 +61,24 @@ export const destroy = async (req, res) => {
   } catch (err) {
     Logger.warn("Erro ao eliminar utilizador", { userId: req.params.id });
     return ApiResponse.notFound(res, err.message);
+  }
+};
+
+export const update = async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return ApiResponse.badRequest(res, "Validação falhou", 400, errors.array());
+    }
+
+    const { name, email, role_id } = req.body;
+    const avatar = req.file ? req.file.filename : undefined;
+    const user = await UserService.atualizar(req.params.id, { name, email, role_id, avatar });
+
+    Logger.info("Utilizador atualizado", { userId: req.params.id });
+    return ApiResponse.success(res, user, "Utilizador atualizado com sucesso");
+  } catch (err) {
+    Logger.warn("Erro ao atualizar utilizador", { userId: req.params.id, error: err.message });
+    return ApiResponse.badRequest(res, err.message);
   }
 };

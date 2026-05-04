@@ -28,6 +28,9 @@ class NavigacaoSistema {
         // Atualizar interface com informações do usuário
         this.updateUI();
 
+        // Validar acesso às páginas de dashboard específicas por role
+        this.validateRoleForDashboardPage();
+
         // Adicionar listener para logout
         this.setupLogout();
     }
@@ -110,6 +113,37 @@ class NavigacaoSistema {
         logoutBtns.forEach(btn => {
             btn.addEventListener('click', () => this.logout());
         });
+    }
+
+    /**
+     * Verifica se a página atual exige role específica e redireciona se necessário
+     */
+    validateRoleForDashboardPage() {
+        const path = window.location.pathname;
+        const roleByPath = {
+            '/aluno/dashboard': 'Aluno',
+            '/orientador/dashboard': 'Orientador',
+            '/coordenador/dashboard': 'Coordenador',
+            '/admin/dashboard': 'Admin'
+        };
+
+        const requiredRole = roleByPath[path];
+        if (!requiredRole) return;
+
+        if (!this.isAuthenticated()) {
+            window.location.href = '/auth/login';
+            return;
+        }
+
+        if (this.user?.role !== requiredRole) {
+            const dashboards = {
+                'Aluno': '/aluno/dashboard',
+                'Orientador': '/orientador/dashboard',
+                'Coordenador': '/coordenador/dashboard',
+                'Admin': '/admin/dashboard'
+            };
+            window.location.href = dashboards[this.user?.role] || '/dashboard';
+        }
     }
 
     /**

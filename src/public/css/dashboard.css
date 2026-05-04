@@ -266,6 +266,87 @@ header p,
   gap: 24px;
 }
 
+.section,
+.card,
+.status-box {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 22px;
+  padding: 24px;
+}
+
+.section h2,
+.card-title {
+  margin: 0 0 18px;
+  color: #f8fafc;
+  font-size: 1.45rem;
+}
+
+.cards-grid,
+.stats-grid,
+.role-cards,
+.dashboard-panels {
+  display: grid;
+  gap: 20px;
+}
+
+.cards-grid {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card .number,
+.card .value {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.card .label,
+.card small,
+.card p {
+  color: rgba(226, 232, 240, 0.78);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 16px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.table th {
+  text-align: left;
+  background: rgba(255, 255, 255, 0.06);
+  color: #e2e8f0;
+}
+
+.table tr:hover {
+  background: rgba(56, 189, 248, 0.08);
+}
+
+.logout-btn {
+  background: linear-gradient(135deg, #ef4444, #f97316);
+  color: #fff;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  opacity: 0.95;
+}
+
 @media (max-width: 960px) {
   .main-container {
     grid-template-columns: 1fr;

@@ -41,4 +41,24 @@ export const UserService = {
     if (!user) throw new Error("Usuário não encontrado.");
     return user;
   }
+  ,
+
+  async atualizar(id, dados) {
+    if (!id) throw new Error("ID do utilizador é obrigatório.");
+    if (!dados.name && !dados.email && !dados.avatar && !dados.role_id) {
+      throw new Error("Nenhum campo para atualizar foi fornecido.");
+    }
+
+    const updateData = {};
+    if (dados.name) updateData.nome = dados.name;
+    if (dados.email) updateData.email = dados.email;
+    if (dados.avatar !== undefined) updateData.foto = dados.avatar;
+    if (dados.role_id !== undefined) updateData.role_id = dados.role_id;
+
+    const result = await UserModel.updateById(id, updateData);
+    if (!result || result.affectedRows === 0) {
+      throw new Error("Usuário não encontrado.");
+    }
+    return { id, ...updateData };
+  }
 };

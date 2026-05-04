@@ -1,7 +1,8 @@
 import { Router } from "express";
 import { body } from "express-validator";
 import path from "path";
-import { formLogin, login, logout, register } from "../../../../controllers/auth-controller.js";
+import { authMiddleware } from "../../../../middlewares/auth-middleware.js";
+import { formLogin, login, logout, register, me } from "../../../../controllers/auth-controller.js";
 
 const router = Router();
 
@@ -27,11 +28,16 @@ router.post("/login",
 router.post("/register",
   body("name").trim().notEmpty().withMessage("Nome é obrigatório"),
   body("email").isEmail().normalizeEmail().withMessage("Email inválido"),
+  body("role_id").optional().custom((value) => {
+    const allowed = ["1", "2", "2.5", "3", 1, 2, 2.5, 3];
+    return allowed.includes(value);
+  }).withMessage("Tipo de usuário inválido"),
   body("password").isLength({ min: 6 }).withMessage("Password deve ter pelo menos 6 caracteres"),
   body("password_confirm").notEmpty().withMessage("Confirmação de password é obrigatória"),
   register
 );
 
 router.get("/logout", logout);
+router.get("/me", authMiddleware, me);
 
 export default router;

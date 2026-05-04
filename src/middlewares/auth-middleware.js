@@ -12,6 +12,9 @@ export const authMiddleware = (req, res, next) => {
   const token = req.headers.authorization?.split(" ")[1];
 
   if (!token) {
+    if (req.headers.accept?.includes("text/html")) {
+      return res.redirect("/auth/login");
+    }
     return res.status(401).json({ error: "Token não fornecido" });
   }
 
@@ -24,6 +27,9 @@ export const authMiddleware = (req, res, next) => {
     };
     next();
   } catch (err) {
+    if (req.headers.accept?.includes("text/html")) {
+      return res.redirect("/auth/login");
+    }
     return res.status(401).json({ error: "Token inválido" });
   }
 };

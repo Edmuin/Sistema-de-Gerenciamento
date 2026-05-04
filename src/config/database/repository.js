@@ -40,9 +40,11 @@ function Repository(table) {
 
     async store(entity) {
       try {
+        const columns = Object.keys(entity);
+        const placeholders = columns.map(() => '?').join(', ');
         const [result] = await pool.query(
-          `INSERT INTO ${table.nome} ${table.colunas} VALUES ${table.querys}`,
-          [...Object.values(entity)]
+          `INSERT INTO ${table.nome} (${columns.join(', ')}) VALUES (${placeholders})`,
+          Object.values(entity)
         );
         return { id: result.insertId, ...entity };
       } catch (error) {
@@ -60,6 +62,20 @@ function Repository(table) {
         return result;
       } catch (error) {
         console.error("Erro ao excluir:", error);
+        throw error;
+      }
+    },
+    async updateById(id, entity) {
+      try {
+        const columns = Object.keys(entity).map((field) => `${field} = ?`).join(", ");
+        const values = [...Object.values(entity), id];
+        const [result] = await pool.query(
+          `UPDATE ${table.nome} SET ${columns} WHERE id = ?`,
+          values
+        );
+        return result;
+      } catch (error) {
+        console.error("Erro ao atualizar:", error);
         throw error;
       }
     },

@@ -2,7 +2,6 @@ import { Router } from "express";
 import path from "path";
 
 import { dashboard ,roles ,Listagem ,Aluno ,Orientador ,Coordenador} from "../../../../controllers/system-controller.js";
-import { authMiddleware, authorizeRole } from "../../../../middlewares/auth-middleware.js";
 
 const router = Router();
 
