@@ -11,7 +11,10 @@ import userRoutes from "./routes/user-routes.js";
 import { requestLogger } from "../../../utils/logger.js";
 import { errorHandler, notFound } from "../../../middlewares/error-handler.js";
 
-dotenv.config();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const ROOT = path.resolve(__dirname, "../../../../");
+dotenv.config({ path: path.join(ROOT, ".env") });
 
 const app = express();
 

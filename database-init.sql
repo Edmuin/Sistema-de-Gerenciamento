@@ -33,5 +33,7 @@ ON DUPLICATE KEY UPDATE nome = VALUES(nome);
 
 -- Cria usuário de aplicação dedicado e concede privilégios ao banco de dados do sistema
 CREATE USER IF NOT EXISTS 'sis_tcc_app'@'localhost' IDENTIFIED BY 'SenhaApp123!';
+CREATE USER IF NOT EXISTS 'sis_tcc_app'@'127.0.0.1' IDENTIFIED BY 'SenhaApp123!';
 GRANT SELECT, INSERT, UPDATE, DELETE ON db_sis_tcc.* TO 'sis_tcc_app'@'localhost';
+GRANT SELECT, INSERT, UPDATE, DELETE ON db_sis_tcc.* TO 'sis_tcc_app'@'127.0.0.1';
 FLUSH PRIVILEGES;
