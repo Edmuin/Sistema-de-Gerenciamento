@@ -4,7 +4,7 @@ import { testConnection } from "./config/database/mysql/db.js";
 
 dotenv.config();
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3000;
 
 const startServer = async () => {
   try {

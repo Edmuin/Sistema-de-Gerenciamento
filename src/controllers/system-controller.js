@@ -17,15 +17,17 @@ export const Listagem = async (req, res) => {
 }
 
 export const Aluno = async (req, res) => {
-    res.sendFile(path.join(process.cwd(), "src/views/Aluno.html"));
+    res.sendFile(path.join(process.cwd(), "src/views/dashboards/aluno-dashboard.html"));
 }
 
 export const Orientador = async (req, res) => {
-    res.sendFile(path.join(process.cwd(), "src/views/Orientador.html"));
+    res.sendFile(path.join(process.cwd(), "src/views/dashboards/orientador-dashboard.html"));
 }
 
 export const Coordenador = async (req, res) => {
-    res.sendFile(path.join(process.cwd(), "src/views/Coordenador.html"));
+    res.sendFile(path.join(process.cwd(), "src/views/dashboards/coordenador-dashboard.html"));
 }
 
-
+export const Admin = async (req, res) => {
+    res.sendFile(path.join(process.cwd(), "src/views/dashboards/admin-dashboard.html"));
+}

@@ -1,155 +1,371 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel de Coordenação - TCC</title>
-    
+    <title>Dashboard do Coordenador - TCC</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="/css/templatemo-glass-admin-style.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/navigation.css">
     <link rel="stylesheet" href="/css/dashboard.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            color: #667eea;
+            font-size: 1.8rem;
+        }
+
+        .main-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            min-height: calc(100vh - 100px);
+        }
+
+        .sidebar {
+            background: white;
+            padding: 2rem 0;
+            box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar nav {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar a {
+            padding: 1rem 2rem;
+            color: #666;
+            text-decoration: none;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar a:hover {
+            background: #f8f9ff;
+            border-left-color: #667eea;
+            color: #667eea;
+        }
+
+        .sidebar a.active {
+            background: #f8f9ff;
+            color: #667eea;
+            border-left-color: #667eea;
+            font-weight: 600;
+        }
+
+        .content {
+            padding: 2rem;
+        }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .section h2 {
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            padding: 1.5rem;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card .number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .card .label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .table th {
+            background: #f8f9ff;
+            padding: 1rem;
+            text-align: left;
+            color: #333;
+            font-weight: 600;
+            border-bottom: 2px solid #eee;
+        }
+
+        .table td {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .table tr:hover {
+            background: #f8f9ff;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .btn:hover {
+            background: #764ba2;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .status.pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status.approved {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status.completed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .logout-btn {
+            background: #dc3545;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            border: none;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                padding: 1rem 0;
+                order: -1;
+            }
+
+            .sidebar nav {
+                flex-direction: row;
+                overflow-x: auto;
+            }
+
+            .sidebar a {
+                white-space: nowrap;
+                padding: 0.75rem 1rem;
+            }
+
+            .content {
+                padding: 1rem;
+            }
+        }
+    </style>
 </head>
-
 <body>
-    <div class="background"></div>
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
+    <!-- Header -->
+    <div class="header">
+        <div>
+            <h1>📋 Dashboard do Coordenador</h1>
+        </div>
+        <div>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+    </div>
 
-    <div class="dashboard">
-        <aside class="sidebar" id="sidebar">
-            <div class="sidebar-header">
-                <div class="logo" style="background: var(--amber);">HB</div>
-                <span class="logo-text">Gestão TCCs</span>
-            </div>
-            
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="/" class="nav-link">Painel Principal</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link active">Gestão de Alunos</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Corpo Docente</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Relatórios Finais</a>
-                </li>
-            </ul>
-
-            <div class="sidebar-footer">
-                <button onclick="window.location.href='/auth/login'" class="card-btn">🚪 Sair</button>
-            </div>
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav>
+                <a href="#dashboard" class="nav-link active">Dashboard</a>
+                <a href="#todos-tccs" class="nav-link">Todos os TCCs</a>
+                <a href="#usuarios" class="nav-link">Usuários</a>
+                <a href="#relatorios" class="nav-link">Relatórios</a>
+                <a href="#configuracoes" class="nav-link">Configurações</a>
+            </nav>
         </aside>
 
-        <main class="main-content">
-            <header class="navbar glass-card" style="margin-bottom: 20px;">
-                <h1 class="page-title">Administração Geral do Sistema</h1>
-            </header>
-
-            <div class="stats-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 25px;">
-                <div class="glass-card-3d stat-card" style="border-left: 4px solid var(--primary-color);">
-                    <span class="stat-label">Alunos Ativos</span>
-                    <div class="stat-value">124</div>
-                </div>
-                <div class="glass-card-3d stat-card" style="border-left: 4px solid var(--emerald);">
-                    <span class="stat-label">TCCs Concluídos</span>
-                    <div class="stat-value">42</div>
-                </div>
-                <div class="glass-card-3d stat-card" style="border-left: 4px solid var(--gold);">
-                    <span class="stat-label">Orientadores</span>
-                    <div class="stat-value">18</div>
-                </div>
-                <div class="glass-card-3d stat-card" style="border-left: 4px solid var(--coral);">
-                    <span class="stat-label">Prazos Críticos</span>
-                    <div class="stat-value">3</div>
-                </div>
-            </div>
-
-            <div class="content-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <!-- Content -->
+        <main class="content">
+            <!-- Dashboard -->
+            <section class="section" id="dashboard">
+                <h2>Dashboard do Coordenador</h2>
                 
-                <section class="glass-card table-card">
-                    <h2 class="card-title">Monitorização de Professores</h2>
-                    <div class="table-wrapper">
-                        <table class="data-table">
-                            <thead>
-                                <tr>
-                                    <th>Orientador</th>
-                                    <th>Nº Alunos</th>
-                                    <th>Carga</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Prof. Roberto Lima</td>
-                                    <td>5/5</td>
-                                    <td><span class="status-badge completed">Cheio</span></td>
-                                </tr>
-                                <tr>
-                                    <td>Prof.ª Sónia Ramos</td>
-                                    <td>3/5</td>
-                                    <td><span class="status-badge processing">Disponível</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="number">0</div>
+                        <div class="label">Total de TCCs</div>
                     </div>
-                </section>
-
-                <section class="glass-card">
-                    <h2 class="card-title">Cronograma Institucional</h2>
-                    <div class="activity-list" style="margin-top: 15px;">
-                        <div class="activity-item" style="padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.05);">
-                            <div>
-                                <p><strong>Lançamento de Notas Finais</strong></p>
-                                <small style="color: var(--text-dim);">Data Limite: 15/12/2026</small>
-                            </div>
-                        </div>
-                        <div class="activity-item" style="padding: 10px;">
-                            <div>
-                                <p><strong>Inscrição para Defesas de TCC</strong></p>
-                                <small style="color: var(--text-dim);">Período: 01/11 a 15/11</small>
-                            </div>
-                        </div>
+                    <div class="card">
+                        <div class="number">0</div>
+                        <div class="label">TCCs Pendentes</div>
                     </div>
-                    <button class="card-btn active" style="width: 100%; margin-top: 20px;">Configurar Novo Prazo</button>
-                </section>
+                    <div class="card">
+                        <div class="number">0</div>
+                        <div class="label">TCCs Aprovados</div>
+                    </div>
+                    <div class="card">
+                        <div class="number">0</div>
+                        <div class="label">Usuários Registrados</div>
+                    </div>
+                </div>
+            </section>
 
-            </div>
+            <!-- Todos os TCCs -->
+            <section class="section" id="todos-tccs">
+                <h2>Todos os TCCs</h2>
+                
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Aluno</th>
+                            <th>Título</th>
+                            <th>Orientador</th>
+                            <th>Status</th>
+                            <th>Nota</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="6" style="text-align: center; color: #999;">
+                                Nenhum TCC registrado ainda
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
 
-            <section class="glass-card table-card" style="margin-top: 20px;">
-                <h2 class="card-title">Gestão de Candidaturas de TCC</h2>
-                <div class="table-wrapper">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>Nome do Aluno</th>
-                                <th>Curso</th>
-                                <th>Orientador Atribuído</th>
-                                <th>Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Helder (Exemplo)</td>
-                                <td>Informática</td>
-                                <td>Prof. Roberto</td>
-                                <td><button class="status-badge" style="background: rgba(255,255,255,0.1); color: white; border:none; cursor:pointer;">Editar Vínculo</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <!-- Usuários -->
+            <section class="section" id="usuarios">
+                <h2>Gerenciamento de Usuários</h2>
+                
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Papel</th>
+                            <th>Data de Registro</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="5" style="text-align: center; color: #999;">
+                                Nenhum usuário registrado ainda
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Relatórios -->
+            <section class="section" id="relatorios">
+                <h2>Relatórios</h2>
+                
+                <h3>Estatísticas Gerais</h3>
+                <div style="background: #f8f9ff; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #667eea;">
+                    <p style="color: #666;">
+                        Os relatórios mostrarão estatísticas como: taxa de conclusão, notas médias, alunos ativos, entre outros.
+                    </p>
+                </div>
+
+                <h3 style="margin-top: 2rem;">Exportar Dados</h3>
+                <button class="btn">Exportar para CSV</button>
+                <button class="btn">Gerar Relatório PDF</button>
+            </section>
+
+            <!-- Configurações -->
+            <section class="section" id="configuracoes">
+                <h2>Configurações do Sistema</h2>
+                
+                <h3>Parâmetros Gerais</h3>
+                <div style="background: #f8f9ff; padding: 1.5rem; border-radius: 8px;">
+                    <p style="color: #666; margin-bottom: 1rem;">
+                        Aqui você pode configurar parâmetros do sistema como datas de início e fim, peso das avaliações, etc.
+                    </p>
                 </div>
             </section>
         </main>
     </div>
 
-    <footer class="site-footer">
-        <p>&copy; 2026 - Gestão Centralizada | Sistema de TCC</p>
-    </footer>
+    <!-- Scripts -->
+    <script src="/js/navigation-system.js"></script>
+    <script>
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = link.getAttribute('href');
+                
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                
+                document.querySelectorAll('section').forEach(s => s.style.display = 'none');
+                document.querySelector(target).style.display = 'block';
+            });
+        });
 
-    <script src="/js/templatemo-glass-admin-style.js"></script>
+        function logout() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = '/auth/form-login';
+        }
+    </script>
 </body>
 </html>
