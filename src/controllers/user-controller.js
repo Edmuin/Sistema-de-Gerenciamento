@@ -4,7 +4,7 @@ import { UserService } from "../services/user-service.js";
 
 export const index = async (req, res) => {
   // const users = await UserService.listar();
-  res.sendFile(path.join(process.cwd(), "src/views/users/index.html"));
+  res.sendFile(path.join(process.cwd(), "src/views/users/index_new.html"));
 };
 
 export const show = async (req, res) => {

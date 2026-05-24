@@ -332,6 +332,37 @@ a {
     border-radius: 20px;
 }
 
+.submenu {
+    list-style: none;
+    margin-top: 8px;
+    margin-left: 45px;
+    padding-left: 18px;
+}
+
+.submenu li {
+    margin-bottom: 10px;
+    color: var(--text-muted);
+}
+
+.submenu a {
+    display: block;
+    padding: 8px 12px;
+    border-radius: 10px;
+    color: var(--text-secondary);
+    font-size: 14px;
+    transition: all var(--transition-fast);
+}
+
+.submenu a:hover {
+    background: var(--glass-hover);
+    color: var(--text-primary);
+    transform: translateX(5px);
+}
+
+.submenu a.active {
+    color: var(--emerald-light);
+}
+
 /* Sidebar User Profile */
 .sidebar-footer {
     padding-top: 20px;

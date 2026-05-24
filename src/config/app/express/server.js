@@ -32,7 +32,7 @@ app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 
 app.get("/", (req, res) => {
-    res.sendFile(path.join(PATHS.views, "index.html"));
+    res.sendFile(path.join(PATHS.views, "index_new.html"));
 });
 
 export default app;
